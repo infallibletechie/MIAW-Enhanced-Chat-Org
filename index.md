@@ -9,7 +9,7 @@
                 console.log( "Conversation Routed" );
                 console.log( "Event detail: ", JSON.stringify( event.detail ) );
 
-                embeddedservice_bootstrap.utilAPI.sendTextMessage('Transferrred')
+                embeddedservice_bootstrap.utilAPI.sendTextMessage('Transfering the Session')
                     .then(() => {
                         console.log("Message sent");
                     })
