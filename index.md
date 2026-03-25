@@ -1,5 +1,17 @@
 <html lang="en">
 <script type='text/javascript'>
+	function sendMessageToUser(message) {
+		embeddedservice_bootstrap.utilAPI.sendTextMessage(message)
+		.then(() => {
+			console.log("Message sent");
+		})
+		.catch(() => {
+			console.log("Message not sent");
+		})
+		.finally(() => {
+			console.log("Message sent - finally");
+		});
+	}
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -15,17 +27,10 @@
 				console.log(routingType);
 
 				if ( routingType == "Initial" ) {
-                	embeddedservice_bootstrap.utilAPI.sendTextMessage('Transfering the Session')
-                    .then(() => {
-                        console.log("Message sent");
-                    })
-                    .catch(() => {
-                        console.log("Message not sent");
-                    })
-                    .finally(() => {
-                        console.log("Message sent - finally");
-                    });
-				}
+                	sendMessageToUser('Initial Transfer');
+				} else if ( routingType == "Transfer" ) {
+                	sendMessageToUser('Subsequent Transfer');
+				} 
             });
             /* END:: Conversation Routed Listener */
 
