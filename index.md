@@ -9,7 +9,13 @@
                 console.log( "Conversation Routed" );
                 console.log( "Event detail: ", JSON.stringify( event.detail ) );
 
-                embeddedservice_bootstrap.utilAPI.sendTextMessage('Transfering the Session')
+				const payloadString = event.detail.conversationEntry.entryPayload;
+				const innerData = JSON.parse(payloadString);
+				const routingType = innerData.routingType;
+				console.log(routingType);
+
+				if ( routingType == "Initial" ) {
+                	embeddedservice_bootstrap.utilAPI.sendTextMessage('Transfering the Session')
                     .then(() => {
                         console.log("Message sent");
                     })
@@ -19,6 +25,7 @@
                     .finally(() => {
                         console.log("Message sent - finally");
                     });
+				}
             });
             /* END:: Conversation Routed Listener */
 
